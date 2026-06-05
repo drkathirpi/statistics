@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<meta name="theme-color" content="#0a1428"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<title>MRCPCH Statistics Quiz</title>
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTVJDUENIIFN0YXRzIFF1aXoiLCJzaG9ydF9uYW1lIjoiU3RhdHMgUXVpeiIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMGExNDI4IiwidGhlbWVfY29sb3IiOiIjMGExNDI4In0="/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+:root{--bg:#0a1428;--s:#111e35;--s2:#1a2d4a;--a:#38bdf8;--a2:#818cf8;--ok:#34d399;--ng:#f87171;--wn:#fbbf24;--tx:#e2e8f0;--mu:#64748b;--bd:rgba(56,189,248,0.15);--r:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 20% 10%,rgba(56,189,248,.07) 0%,transparent 60%),radial-gradient(ellipse 50% 35% at 80% 80%,rgba(129,140,248,.06) 0%,transparent 60%);pointer-events:none;z-index:0}
+#root{position:relative;z-index:1}
+.hdr{background:rgba(17,30,53,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd);padding:14px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.hico{width:38px;height:38px;background:linear-gradient(135deg,var(--a),var(--a2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.htx{flex:1}.ht{font-size:15px;font-weight:700}.hs{font-size:11px;color:var(--mu);font-family:'JetBrains Mono',monospace}
+.hbg{background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(129,140,248,.15));border:1px solid var(--bd);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;color:var(--a);font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.gbtn{background:none;border:none;cursor:pointer;font-size:20px;padding:4px;color:var(--mu);transition:color .2s;flex-shrink:0}
+.gbtn:hover{color:var(--a)}
+.main{padding:16px;max-width:680px;margin:0 auto}
+.hero{background:linear-gradient(135deg,rgba(56,189,248,.07),rgba(129,140,248,.07));border:1px solid var(--bd);border-radius:var(--r);padding:28px 20px 24px;text-align:center;margin-bottom:20px}
+.hem{font-size:48px;margin-bottom:12px}.htt{font-size:22px;font-weight:700;margin-bottom:6px}.hsu{font-size:13px;color:var(--mu);line-height:1.6;margin-bottom:20px}
+.srow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.scd{background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:10px;padding:12px 8px;text-align:center}
+.sn{font-size:22px;font-weight:700;color:var(--a);font-family:'JetBrains Mono',monospace}.sl{font-size:10px;color:var(--mu);margin-top:3px;text-transform:uppercase;letter-spacing:.5px}
+.slbl{font-size:11px;color:var(--mu);text-transform:uppercase;letter-spacing:1px;font-family:'JetBrains Mono',monospace;margin-bottom:10px;padding-left:2px}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.tc{background:var(--s);border:1px solid var(--bd);border-radius:var(--r);padding:14px 12px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;gap:6px}
+.tc:hover,.tc:active{border-color:var(--a);background:rgba(56,189,248,.07);transform:translateY(-1px)}.tc.sel{border-color:var(--a);background:rgba(56,189,248,.12)}
+.ti{font-size:22px}.tn{font-size:13px;font-weight:600}.tct{font-size:11px;color:var(--mu);font-family:'JetBrains Mono',monospace}
+.sbg{display:inline-block;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:var(--wn);font-size:9px;font-weight:700;padding:2px 7px;border-radius:12px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.5px;margin-left:4px}
+.btn{border:none;border-radius:10px;font-family:'Sora',sans-serif;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.bp{background:linear-gradient(135deg,var(--a),var(--a2));color:#0a1428;font-size:15px;padding:14px 24px;width:100%;box-shadow:0 4px 20px rgba(56,189,248,.25)}
+.bp:hover{opacity:.9;transform:translateY(-1px)}.bp:active{transform:translateY(0)}.bp:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.bg{background:transparent;color:var(--mu);border:1px solid var(--bd);font-size:13px;padding:10px 16px}
+.bg:hover{color:var(--tx);border-color:rgba(56,189,248,.3)}
+.prw{background:var(--s);border:1px solid var(--bd);border-radius:12px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.pro{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.pri{height:100%;background:linear-gradient(90deg,var(--a),var(--a2));border-radius:3px;transition:width .4s ease}
+.pt{font-size:11px;color:var(--mu);font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.qc{background:var(--s);border:1px solid var(--bd);border-radius:var(--r);padding:20px;margin-bottom:14px}
+.qm{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.qt{background:rgba(56,189,248,.12);color:var(--a);font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.5px;border:1px solid rgba(56,189,248,.2)}
+.qtt{background:rgba(129,140,248,.12);color:var(--a2);font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;border:1px solid rgba(129,140,248,.2)}
+.qn{font-size:11px;color:var(--mu);margin-left:auto;font-family:'JetBrains Mono',monospace}
+.qtx{font-size:15px;line-height:1.65;color:var(--tx)}
+.ol{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.ob{background:var(--s2);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;text-align:left;font-family:'Sora',sans-serif;font-size:14px;color:var(--tx);transition:all .2s;line-height:1.5;width:100%}
+.ob:hover:not(:disabled){border-color:rgba(56,189,248,.3);background:rgba(56,189,248,.06)}.ob:disabled{cursor:default}
+.ob.sc{background:rgba(52,211,153,.12);border-color:var(--ok)}.ob.sw{background:rgba(248,113,113,.12);border-color:var(--ng)}.ob.rc{background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.4)}
+.ol2{display:flex;align-items:center;justify-content:center;width:26px;height:26px;min-width:26px;border-radius:6px;font-size:12px;font-weight:700;background:rgba(255,255,255,.06);color:var(--mu);font-family:'JetBrains Mono',monospace;margin-top:1px}
+.ob.sc .ol2{background:var(--ok);color:#0a1428}.ob.sw .ol2{background:var(--ng);color:#0a1428}.ob.rc .ol2{background:rgba(52,211,153,.3);color:var(--ok)}
+.exp{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:var(--r);padding:16px;margin-bottom:14px;animation:fs .3s ease}
+.exp.wr{background:rgba(248,113,113,.06);border-color:rgba(248,113,113,.2)}
+@keyframes fs{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.eh{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:13px;font-weight:700}.eh.co{color:var(--ok)}.eh.wr{color:var(--ng)}
+.etx{font-size:13px;line-height:1.65;color:var(--tx)}
+.ef{background:rgba(0,0,0,.25);border:1px solid var(--bd);border-radius:8px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--a);margin-top:10px;line-height:1.9}
+.etp{display:flex;align-items:flex-start;gap:8px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:8px;padding:10px 12px;margin-top:10px;font-size:12px;color:var(--tx);line-height:1.6}
+.esr{font-size:11px;color:var(--mu);margin-top:8px;font-family:'JetBrains Mono',monospace;border-top:1px solid var(--bd);padding-top:8px}
+.esr span{color:var(--wn)}
+.nr{display:grid;grid-template-columns:1fr 2fr;gap:10px;margin-bottom:20px}
+.rsc{background:var(--s);border:1px solid var(--bd);border-radius:var(--r);padding:24px 20px;text-align:center;margin-bottom:16px}
+.rem{font-size:52px;margin-bottom:12px}.rtl{font-size:20px;font-weight:700;margin-bottom:6px}.rsb{font-size:13px;color:var(--mu);margin-bottom:20px}
+.srng{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.sri{width:84px;height:84px;border-radius:50%;background:var(--s);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sp{font-size:24px;font-weight:700;color:var(--a);font-family:'JetBrains Mono',monospace}.sf{font-size:10px;color:var(--mu)}
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.rst{background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:10px;padding:12px 8px;text-align:center}
+.rsn{font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace}.rsl{font-size:10px;color:var(--mu);margin-top:3px;text-transform:uppercase}
+.fr{display:flex;gap:8px;margin-bottom:14px;overflow-x:auto;padding-bottom:2px}
+.ft{background:var(--s);border:1px solid var(--bd);border-radius:20px;padding:6px 14px;font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--mu);cursor:pointer;white-space:nowrap;transition:all .2s}
+.ft.ac{background:rgba(56,189,248,.12);border-color:var(--a);color:var(--a)}
+.ri{background:var(--s);border:1px solid var(--bd);border-radius:var(--r);padding:16px;margin-bottom:10px}
+.ri.rc2{border-left:3px solid var(--ok)}.ri.rw{border-left:3px solid var(--ng)}
+.rq{font-size:13px;line-height:1.5;color:var(--tx);margin-bottom:8px}
+.ra{display:flex;align-items:flex-start;gap:8px;font-size:12px;font-family:'JetBrains Mono',monospace;line-height:1.5}
+.tr{display:flex;align-items:center;gap:10px;background:var(--s);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;margin-bottom:14px;cursor:pointer}
+.tl{font-size:13px;color:var(--tx);flex:1}.tls{font-size:11px;color:var(--mu)}
+.ts{width:40px;height:22px;border-radius:11px;background:var(--s2);border:1px solid var(--bd);position:relative;transition:background .2s}
+.ts.on{background:rgba(56,189,248,.3);border-color:var(--a)}
+.tk{width:16px;height:16px;border-radius:50%;background:var(--mu);position:absolute;top:2px;left:2px;transition:transform .2s,background .2s}
+.ts.on .tk{transform:translateX(18px);background:var(--a)}
+.sm{font-size:16px;font-weight:700}.sm.ex{color:var(--ok)}.sm.gd{color:var(--wn)}.sm.nw{color:var(--ng)}
+/* MODAL */
+.ovl{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:flex;align-items:flex-end;justify-content:center;padding:0}
+.mdl{background:var(--s);border-radius:20px 20px 0 0;padding:24px 20px;width:100%;max-width:500px;border-top:1px solid var(--bd)}
+.mdl-t{font-size:16px;font-weight:700;margin-bottom:6px}
+.mdl-s{font-size:12px;color:var(--mu);margin-bottom:16px}
+.inp{background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--tx);width:100%;margin-bottom:10px}
+.inp:focus{outline:none;border-color:var(--a)}
+.mdl-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.model-info{font-size:11px;color:var(--ok);font-family:'JetBrains Mono',monospace;margin-bottom:12px;min-height:16px}
+/* AI TUTOR */
+.ai-btn{background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(129,140,248,.15));border:1px solid var(--bd);border-radius:10px;padding:10px 14px;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'Sora',sans-serif;font-size:13px;color:var(--a);width:100%;margin-top:10px;transition:all .2s}
+.ai-btn:hover{border-color:var(--a);background:rgba(56,189,248,.12)}
+.ai-btn:disabled{opacity:.5;cursor:not-allowed}
+.ai-box{background:var(--s2);border:1px solid rgba(129,140,248,.3);border-radius:var(--r);padding:14px;margin-top:10px;animation:fs .3s ease}
+.ai-hd{font-size:11px;font-weight:700;color:var(--a2);margin-bottom:8px;display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace}
+.ai-tx{font-size:13px;line-height:1.7;color:var(--tx)}
+.ai-loading{display:flex;gap:6px;align-items:center;padding:8px 0}
+.ai-dot{width:8px;height:8px;border-radius:50%;background:var(--a2);animation:pulse 1.2s infinite}
+.ai-dot:nth-child(2){animation-delay:.2s}.ai-dot:nth-child(3){animation-delay:.4s}
+@keyframes pulse{0%,80%,100%{opacity:.3;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+.no-key{font-size:12px;color:var(--mu);text-align:center;padding:8px;border:1px dashed var(--bd);border-radius:8px;margin-top:10px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script>
+const{useState,useEffect,useCallback}=React,h=React.createElement;
+
+const Q=[
+// ══════════════════════════════════════════════════════════
+// 1. TYPES OF DATA & DISPLAYING DATA (Lissauer Ch38)
+// ══════════════════════════════════════════════════════════
+{id:1,topic:'Data Types & Display',type:'BOF',src:'Lissauer Ch.38',
+q:'Which type of data can take any value in a given range, such as height, weight, or age?',
+opts:['Discrete data','Continuous data','Binary data','Ordinal data','Nominal data'],
+ans:1,
+exp:'Continuous data can take any value in a given range (height, weight, age). Discrete data is whole numbers only (number of children). Binary = two categories (alive/dead). Ordinal = ordered categories (social class 1–5). Nominal = unordered categories (blood group).',
+formula:'Continuous: any value (height, weight, BP)\nDiscrete: whole numbers only (no. of children)\nBinary: yes/no, alive/dead\nOrdinal: ordered groups (mild/moderate/severe)\nNominal: named groups, no order (blood group)',
+tip:'Data type determines which statistical test and summary measure to use — always identify data type first.'},
+
+{id:2,topic:'Data Types & Display',type:'BOF',src:'Lissauer Ch.38',
+q:'A sample of 1000 seven-year-old schoolchildren undergo BMI testing. Which graphical display method is MOST appropriate?',
+opts:['Bar chart','Box-and-whisker plot','Pie chart showing percentages','Histogram','Scatterplot'],
+ans:3,
+exp:'BMI is a continuous variable with many values — a HISTOGRAM is best for displaying the distribution of a continuous variable. Bar charts are for discrete/categorical data. Pie charts show proportions of categories. Box plots show median and spread. Scatterplots show relationships between two variables.',
+formula:null,
+tip:'Lissauer textbook MCQ. Histogram = continuous variable distribution. Bar chart = categorical/discrete. Pie chart = proportions of categories.'},
+
+{id:3,topic:'Data Types & Display',type:'BOF',src:'Lissauer Ch.38',
+q:'A study records smoking in pregnancy: 1–3 cigarettes/day = 31; >3/day = 44; non-smokers = 856; unspecified = 44. What is the most appropriate chart?',
+opts:['Histogram','Line diagram','Bar chart','Scatterplot','Dot diagram'],
+ans:2,
+exp:'Smoking category is CATEGORICAL (not continuous), with a small number of defined groups. A BAR CHART is appropriate. A histogram requires continuous data with class intervals. A pie chart could also work, but bar chart is preferred for showing separate categories.',
+formula:null,
+tip:'Bar chart = categorical variable with separate named groups. Histogram = continuous variable distribution.'},
+
+{id:4,topic:'Data Types & Display',type:'BOF',src:'Lissauer Ch.38',
+q:'Length of hospital stay data: most children stay a short time, but a few stay much longer, pulling the distribution to the right. This distribution is best described as:',
+opts:['Normally distributed','Negatively skewed','Positively (right) skewed','Bimodal','Uniform'],
+ans:2,
+exp:'A POSITIVELY SKEWED (right-skewed) distribution has a long right tail — most values are low but a few extreme high values pull the tail to the right. Length of hospital stay is a classic example. Income is another. For skewed data, use MEDIAN and IQR (not mean and SD).',
+formula:'Positive (right) skew: tail to the right → mean > median\nNegative (left) skew: tail to the left → mean < median\nNormal: symmetrical → mean = median',
+tip:'Skewed data: always report MEDIAN + IQR, NOT mean + SD. Mean is pulled toward the tail.'},
+
+// ══════════════════════════════════════════════════════════
+// 2. MEASURES OF CENTRAL TENDENCY & SPREAD
+// ══════════════════════════════════════════════════════════
+{id:5,topic:'Describing Data',type:'BOF',src:'Lissauer Ch.38 / ERN Ch.24',
+q:'In NORMALLY distributed data, which measures are most appropriate to describe average and spread?',
+opts:['Median and interquartile range','Mean and standard deviation','Median and range','Mode and variance','Mean and standard error'],
+ans:1,
+exp:'For NORMALLY distributed (symmetrical) data: use MEAN and STANDARD DEVIATION. For skewed or non-normal data: use MEDIAN and INTERQUARTILE RANGE (IQR). The mean and SD are only valid and representative when data is normally distributed.',
+formula:'Normal distribution:\n  Centre = mean\n  Spread = SD\n\nSkewed distribution:\n  Centre = median\n  Spread = IQR\n\nmean ± 2SD contains ~95% of all individual values',
+tip:'This is a fundamental principle tested in MRCPCH. Always match the summary statistic to the distribution of the data.'},
+
+{id:6,topic:'Describing Data',type:'BOF',src:'Lissauer Ch.38',
+q:'1000 seven-year-old schoolchildren undergo BMI testing. You must summarize numerically using up to three parameters without showing a graph. Which best describes the data?',
+opts:['Mean, median and confidence intervals','Mean, median and range','Mean, standard deviation and confidence intervals','Median, range and standard deviation','Variance, standard deviation and range'],
+ans:2,
+exp:'For normally distributed data (BMI in a large population tends to be approximately normal), the most complete and appropriate summary is: MEAN (centre) + STANDARD DEVIATION (spread) + CONFIDENCE INTERVALS (precision of the estimate). This is the Lissauer textbook answer for this specific question.',
+formula:null,
+tip:'Mean + SD + CI = gold standard summary for normally distributed data. This is a direct Lissauer textbook MCQ.'},
+
+{id:7,topic:'Describing Data',type:'BOF',src:'ERN Ch.24',
+q:'FEV₁ is measured in 100 students: mean = 4.5 L, SD = 0.5 L. Approximately what range contains 95% of ALL individual FEV₁ values?',
+opts:['4.4 – 4.6 L','4.0 – 5.0 L','3.5 – 5.5 L','4.45 – 4.55 L','4.3 – 4.7 L'],
+ans:2,
+exp:'For normally distributed data: mean ± 2SD contains approximately 95% of individual values.\n4.5 ± 2(0.5) = 4.5 ± 1.0 = 3.5 to 5.5 L.\n\nNote: this is DIFFERENT from the 95% CI which is mean ± 1.96×SE (a much narrower range about the population mean estimate).',
+formula:'95% of INDIVIDUAL values: mean ± 2SD\n= 4.5 ± 2(0.5) = 3.5–5.5 L\n\n95% CI for POPULATION MEAN: mean ± 1.96×SE\nSE = SD/√n = 0.5/10 = 0.05\n95% CI = 4.5 ± 0.1 = 4.4–4.6 L',
+tip:'KEY DISTINCTION: mean ± 2SD = range for individual values. 95% CI = precision of the mean estimate. Very different ranges!'},
+
+{id:8,topic:'Describing Data',type:'BOF',src:'Lissauer Ch.38',
+q:'A box-and-whisker plot is constructed. The horizontal line in the MIDDLE of the box represents:',
+opts:['The mean','The median','The mode','The upper quartile','The standard deviation'],
+ans:1,
+exp:'In a box-and-whisker plot: the middle line = MEDIAN. The upper and lower box edges = upper and lower QUARTILES (containing 25% of values each; box = 50% of values total = IQR). The whiskers extend to the highest and lowest values (range). Box plots are ideal for non-normal (skewed) data.',
+formula:'Box-and-whisker plot:\n  Centre line = MEDIAN\n  Box edges = Q1 (25th) and Q3 (75th) percentiles\n  Box width = IQR (interquartile range)\n  Whiskers = min and max (range)',
+tip:'MRCPCH frequently tests box plot interpretation. Middle line = MEDIAN (never mean in a box plot).'},
+
+{id:9,topic:'Describing Data',type:'BOF',src:'Lissauer Ch.38',
+q:'In a normal distribution, what percentage of values fall within ±2 standard deviations of the mean?',
+opts:['68.2%','90%','95.4%','99.7%','50%'],
+ans:2,
+exp:'In a normal distribution:\n±1 SD = 68.27% of values\n±2 SD = 95.45% of values\n±3 SD = 99.73% of values\n±1.96 SD = exactly 95% of values\n\nThis underpins the 95% confidence interval calculation.',
+formula:'±1 SD → 68.27%\n±1.96 SD → 95% (used for 95% CI)\n±2 SD → 95.45%\n±2.58 SD → 99%\n±3 SD → 99.73%',
+tip:'Memorise: ±1SD=68%, ±2SD=95%, ±3SD=99.7%. The 95% CI uses ±1.96 SE (not exactly 2).'},
+
+// ══════════════════════════════════════════════════════════
+// 3. STANDARD ERROR & CONFIDENCE INTERVALS
+// ══════════════════════════════════════════════════════════
+{id:10,topic:'Confidence Intervals',type:'BOF',src:'Lissauer Ch.38',
+q:'What is the standard error (SE) of the mean, and what does it measure?',
+opts:['SE = SD × √n; measures individual data spread','SE = SD / √n; measures how precisely the sample mean estimates the population mean','SE = SD²; measures variance','SE = mean / SD; measures relative variability','SE = SD / n; measures sampling error'],
+ans:1,
+exp:'SE = SD / √n. Standard error measures the PRECISION of the sample mean as an estimate of the true population mean. A larger sample size gives a smaller SE (more precise). SD measures spread of INDIVIDUAL values. SE measures precision of the MEAN ESTIMATE. Key distinction for MRCPCH.',
+formula:'SE = SD / √n\n\nSD = spread of individual data\nSE = precision of the sample mean\n\nSE always < SD\nSE ↓ as n ↑ (larger sample = more precise)',
+tip:'SD vs SE is a classic MRCPCH trap. SD describes individuals. SE describes the mean. CI is built from SE, not SD.'},
+
+{id:11,topic:'Confidence Intervals',type:'BOF',src:'Lissauer Ch.38',
+q:'100 children: mean vitamin D = 21.9 ng/mL, SD = 5 ng/mL. What is the 95% CI for the true population mean?',
+opts:['20.9 – 22.9 ng/mL','16.9 – 26.9 ng/mL','21.4 – 22.4 ng/mL','19.9 – 23.9 ng/mL','11.9 – 31.9 ng/mL'],
+ans:0,
+exp:'SE = SD/√n = 5/√100 = 0.5\n95% CI = mean ± 1.96×SE = 21.9 ± (1.96×0.5) = 21.9 ± 0.98 ≈ 20.9 to 22.9 ng/mL\n\nThis is the canonical Lissauer textbook example.',
+formula:'SE = 5/√100 = 0.5\n95% CI = mean ± 1.96×SE\n= 21.9 ± (1.96 × 0.5)\n= 21.9 ± 0.98\n= (20.92, 22.88) ≈ 20.9 – 22.9',
+tip:'Classic Lissauer CI calculation. Also: 99% CI = mean ± 2.58×SE. Wider CI = less precise (smaller sample).'},
+
+{id:12,topic:'Confidence Intervals',type:'BOF',src:'ERN Ch.24',
+q:'FEV₁ in 100 students: mean 4.5 L, SD 0.5 L. What is the 95% CI for the population mean FEV₁?',
+opts:['4.4 – 4.6 L','3.5 – 5.5 L','4.0 – 5.0 L','4.49 – 4.51 L','4.3 – 4.7 L'],
+ans:0,
+exp:'SE = SD/√n = 0.5/√100 = 0.05\n95% CI ≈ mean ± 2×SE = 4.5 ± 2(0.05) = 4.5 ± 0.1 = 4.4 to 4.6 L\n\nNote: this CI (4.4–4.6) is much narrower than the individual value range (3.5–5.5 = mean±2SD). The CI tells us about the precision of the MEAN estimate, not the spread of individuals.',
+formula:'SE = 0.5/√100 = 0.05\n95% CI ≈ 4.5 ± 2(0.05) = 4.4–4.6 L\n\nCompare with individual values range:\nmean ± 2SD = 4.5 ± 1.0 = 3.5–5.5 L (much wider!)',
+tip:'ERN textbook example. The 95% CI for the mean is MUCH narrower than the range containing 95% of individuals.'},
+
+{id:13,topic:'Confidence Intervals',type:'BOF',src:'TAS Feb 2025',
+q:'A study examines factors reducing RDS. CIs given:\n• Birth wt <1000g: CI (1.027–1.567)\n• Antenatal steroids: CI (0.987–1.556)\n• Temperature: CI (−0.7–5.0)\nWhich factor is statistically significant?',
+opts:['Birth weight <1000g','Antenatal steroids','Temperature','All three','None of them'],
+ans:0,
+exp:'For relative risk/odds ratio: CI NOT including 1 = significant.\nBirth wt <1000g: (1.027–1.567) → does NOT include 1 → SIGNIFICANT\nAntenatal steroids: (0.987–1.556) → INCLUDES 1 → not significant\nTemperature: (−0.7–5.0) → includes 0 → not significant\n\nDirect TAS Feb 2025 question.',
+formula:'RR or OR:\n  CI does NOT include 1 → significant (p<0.05)\n  CI includes 1 → not significant (p>0.05)\n\nDifference:\n  CI does NOT include 0 → significant\n  CI includes 0 → not significant',
+tip:'Classic CI trap: antenatal steroids sounds important clinically but CI crosses 1 → NOT significant statistically.'},
+
+{id:14,topic:'Confidence Intervals',type:'BOF',src:'Lissauer Ch.38',
+q:'A cross-sectional study reports illness incidence aged 1–5 in 2005: 17.2 (95% CI 16.6–17.8) and in 2010: 10.7 (95% CI 10.2–11.2). Which statement is TRUE?',
+opts:['No significant change — the CIs are within a similar range','The incidence significantly decreased between 2005 and 2010','Both values are within normal range','CIs are too narrow to be meaningful','Prescriptions significantly decreased in the same period'],
+ans:1,
+exp:'The two 95% CIs do NOT overlap: 2005 lower bound (16.6) >> 2010 upper bound (11.2). Non-overlapping CIs confirm a statistically significant difference. The incidence fell significantly from ~17 to ~11 per 1000 patient-years.\n\nThis is the Lissauer textbook data analysis MCQ (Answer 38.3, option C).',
+formula:'Non-overlapping 95% CIs → statistically significant difference\nOverlapping CIs → cannot conclude significance without formal testing\n\n2005: 16.6–17.8\n2010: 10.2–11.2\nNo overlap → SIGNIFICANT',
+tip:'Non-overlapping CIs always mean significant. Overlapping CIs do NOT always mean non-significant.'},
+
+{id:15,topic:'Confidence Intervals',type:'BOF',src:'TAS Feb 2025 (indomethacin study)',
+q:'Study of IV indomethacin in 2872 preterms (19 trials). RRs with 95% CIs:\n1. Symptomatic PDA: RR 0.44 (CI 0.38–0.50)\n2. Surgical PDA ligation: RR 0.51 (CI 0.37–0.71)\n3. Severe IVH: RR 0.66 (CI 0.53–0.82)\n4. Mortality: RR 0.96 (CI 0.81–1.12)\nWhat is the CORRECT conclusion?',
+opts:['Mortality rate significantly decreased','All neonates should receive indomethacin','Severe IVH significantly decreases with treatment','A three-way trial with ibuprofen is needed','All four outcomes are significantly improved'],
+ans:2,
+exp:'Check each CI against 1:\n1. PDA (0.38–0.50): does not include 1 → significant ✓\n2. Surgical ligation (0.37–0.71): does not include 1 → significant ✓\n3. Severe IVH (0.53–0.82): does not include 1 → SIGNIFICANT ✓\n4. Mortality (0.81–1.12): INCLUDES 1 → NOT significant ✗\n\nOnly C (severe IVH decreases) is a standalone correct conclusion. Direct TAS Feb 2025.',
+formula:'RR <1 + CI does not include 1 → treatment reduces outcome significantly\nMortality RR 0.96, CI (0.81–1.12) includes 1 → NOT significant',
+tip:'Read every CI individually. Mortality looks beneficial (RR=0.96) but CI crosses 1 → cannot conclude significant mortality reduction.'},
+
+// ══════════════════════════════════════════════════════════
+// 4. P-VALUES & SIGNIFICANCE TESTS
+// ══════════════════════════════════════════════════════════
+{id:16,topic:'P-values & Significance',type:'BOF',src:'ERN Ch.24 / Lissauer Ch.38',
+q:'The p-value is best defined as:',
+opts:['The probability the null hypothesis is true','The probability the treatment is effective','The probability of observing a result as extreme as this (or more extreme) if the null hypothesis is true','The probability of a Type I error','The proportion of studies that would show this result'],
+ans:2,
+exp:'The p-value = probability of observing a result as extreme as the one found, or more extreme, ASSUMING the null hypothesis is true. It is NOT the probability the null hypothesis is true. p<0.05 means: if H₀ were true, there is a <5% chance of seeing this result by chance.',
+formula:'p-value = P(data this extreme | H₀ is true)\n\nNOT: P(H₀ is true | data)\n\np<0.05 → reject H₀ at 5% significance level\np>0.05 → insufficient evidence to reject H₀',
+tip:'Most misunderstood concept in statistics. p-value says something about the DATA given H₀, NOT about the probability that H₀ is true.'},
+
+{id:17,topic:'P-values & Significance',type:'BOF',src:'ERN Ch.24',
+q:'If p<0.05, what can be said about the corresponding 95% confidence interval?',
+opts:['The CI will be very wide','The CI will contain 0 (or 1 for OR/RR)','The CI will NOT contain 0 (or 1 for OR/RR)','The CI will be narrow','Nothing — CI and p-value are independent'],
+ans:2,
+exp:'There is a direct mathematical relationship: p<0.05 ↔ 95% CI does NOT contain the null value (0 for differences, 1 for OR/RR). If p>0.05 ↔ 95% CI CONTAINS the null value. They always agree at the same significance level.',
+formula:'p<0.05 ↔ 95% CI does NOT include null value (0 or 1)\np>0.05 ↔ 95% CI INCLUDES null value\n\nThis works for all effect measures:\nDifference: null = 0\nRR, OR, HR: null = 1',
+tip:'p-value and CI always tell the same story at the same significance level. Use BOTH in practice.'},
+
+{id:18,topic:'P-values & Significance',type:'BOF',src:'TAS Oct 2025',
+q:'A blinded RCT of hypertonic saline vs normal saline for bronchiolitis finds: statistically no difference in admission rate, but clinically there is a difference. The best description of this study type is:',
+opts:['RCT','Case-control','Cohort study','Systematic review','Crossover trial'],
+ans:0,
+exp:'RCT: random allocation + blinding + intervention vs control. This meets all criteria → it is an RCT. The key teaching point: statistical significance ≠ clinical significance. The study may have been underpowered — hence no statistical significance despite a real clinical difference (Type II error). Direct TAS Oct 2025.',
+formula:null,
+tip:'Statistical significance ≠ clinical significance. An underpowered study can have clinical benefit without statistical significance (Type II error).'},
+
+// ══════════════════════════════════════════════════════════
+// 5. STATISTICAL TESTS
+// ══════════════════════════════════════════════════════════
+{id:19,topic:'Statistical Tests',type:'BOF',src:'TAS Feb 2025',
+q:'Two groups with NORMALLY distributed numerical data are compared. What is the appropriate statistical test?',
+opts:['Student t-test','Mann-Whitney test','Chi-squared test','Fisher exact test','ANOVA'],
+ans:0,
+exp:'Two groups + numeric + NORMAL → Independent samples t-test (Student t-test). This appeared verbatim in TAS Feb 2025 and is a fundamental test choice principle.',
+formula:'2 groups, numeric, NORMAL → Independent t-test\n2 groups, numeric, SKEWED → Mann-Whitney U\n2 groups, CATEGORICAL → Chi-squared\n>2 groups, normal → ANOVA\n>2 groups, skewed → Kruskal-Wallis',
+tip:'"Normally distributed" + 2 groups → t-test every time.'},
+
+{id:20,topic:'Statistical Tests',type:'BOF',src:'TAS June 2025',
+q:'Two UNPAIRED groups with SKEWED (non-normally distributed) data are compared. What is the most appropriate statistical test?',
+opts:['Student t-test','Mann-Whitney test','ANOVA','Paired t-test','Chi-squared test'],
+ans:1,
+exp:'Two unpaired groups + SKEWED → Mann-Whitney U test (non-parametric equivalent of independent t-test). Appeared verbatim in TAS June 2025.',
+formula:'SKEWED data → NON-PARAMETRIC test\n2 groups unpaired + skewed → Mann-Whitney U\n2 groups unpaired + normal → Independent t-test\n2 groups PAIRED + normal → Paired t-test\n2 groups PAIRED + skewed → Wilcoxon signed-rank',
+tip:'"Skewed" always means non-parametric. Mann-Whitney = non-parametric t-test for 2 groups.'},
+
+{id:21,topic:'Statistical Tests',type:'BOF',src:'TAS Feb 2026',
+q:'100 patients: study effect of melatonin on sleep length BEFORE and AFTER treatment in the SAME patients. What is the appropriate test?',
+opts:['Paired t-test','Chi-square test','Pearson correlation','ANOVA','Independent t-test'],
+ans:0,
+exp:'Same patients measured twice (before/after) = PAIRED data. Sleep length = continuous numeric, normal distribution → PAIRED t-test. Direct TAS Feb 2026.',
+formula:'Same subjects × 2 timepoints × normal → Paired t-test\nSame subjects × 2 timepoints × skewed → Wilcoxon signed-rank',
+tip:'Before/after in SAME patients → PAIRED test. Two different groups → INDEPENDENT (unpaired) test.'},
+
+{id:22,topic:'Statistical Tests',type:'BOF',src:'TAS Feb 2026',
+q:'Continuous, non-normally distributed (skewed) outcome compared across THREE independent groups. What is the most appropriate test?',
+opts:['Kruskal-Wallis test','Mann-Whitney test','Wilcoxon signed-rank test','ANOVA','Unpaired t-test'],
+ans:0,
+exp:'3+ groups + numeric + SKEWED → Kruskal-Wallis (non-parametric ANOVA). Mann-Whitney is only for 2 groups. ANOVA requires normal data. Direct TAS Feb 2026.',
+formula:'>2 groups, normal → one-way ANOVA\n>2 groups, skewed → Kruskal-Wallis\n\n2 groups, normal → t-test\n2 groups, skewed → Mann-Whitney U',
+tip:'"3 groups, skewed" → Kruskal-Wallis every time.'},
+
+{id:23,topic:'Statistical Tests',type:'BOF',src:'TAS Recalls',
+q:'Small group (n=70 males), binary outcome (survived vs died). Which test is most appropriate?',
+opts:['Chi-squared test','Fisher exact test','Student t-test','Wilcoxon','ANOVA'],
+ans:1,
+exp:'Binary outcome + SMALL expected cell counts (<5) → Fisher exact test. Chi-squared requires expected counts ≥5 per cell. With only 70 total, some cells likely have <5 expected. Fisher exact is correct for binary outcomes with small numbers.',
+formula:'Binary + large expected counts (≥5) → Chi-squared\nBinary + SMALL expected counts (<5) → Fisher exact\n\nRule: if any expected cell <5 → Fisher exact',
+tip:'"Small numbers" + binary = Fisher exact. The word "exact" = for small/exact numbers.'},
+
+{id:24,topic:'Statistical Tests',type:'BOF',src:'Lissauer Ch.38',
+q:'RSV bronchiolitis infants vs non-RSV bronchiolitis infants: comparing a continuous, normally distributed outcome between these two INDEPENDENT groups. Which test?',
+opts:['Paired t-test','Unpaired (independent) t-test','Mann-Whitney U test','ANOVA','Chi-squared test'],
+ans:1,
+exp:'Two independent groups + continuous + normal → UNPAIRED (independent) t-test. Paired t-test would only apply if the same children were measured twice. RSV and non-RSV are clearly different/independent groups. From Lissauer Ch.38.',
+formula:'Independent groups + normal → Unpaired t-test\nSame subjects × 2 time points + normal → Paired t-test',
+tip:'Unpaired = two separate, independent groups. Paired = same group measured twice (matched/before-after).'},
+
+{id:25,topic:'Statistical Tests',type:'BOF',src:'Lissauer Ch.38',
+q:'Comparing weight gain from birth to 6 months across FOUR formula groups (all normally distributed). Which test?',
+opts:['Chi-squared test','Independent t-test','Paired t-test','ANOVA (Analysis of Variance)','Kruskal-Wallis'],
+ans:3,
+exp:'Comparing means of >2 independent groups with normally distributed data → ANOVA (Analysis of Variance). T-tests are only for 2 groups. ANOVA tests whether at least one group mean differs significantly from the others. From Lissauer Ch.38.',
+formula:'>2 groups, numeric, NORMAL → ANOVA\n\nANOVA null hypothesis: all group means are equal\nSignificant ANOVA → at least one group differs\n(then need post-hoc tests to identify which)',
+tip:'ANOVA = 3+ groups with normally distributed numeric outcome. Kruskal-Wallis = same but for non-normal data.'},
+
+{id:26,topic:'Statistical Tests',type:'BOF',src:'ERN Ch.24',
+q:'A study compares vaccine uptake (yes/no) between two ethnic groups. Which test is MOST appropriate?',
+opts:['t-test','Mann-Whitney U','ANOVA','Chi-squared test','Pearson correlation'],
+ans:3,
+exp:'Vaccine uptake is a BINARY CATEGORICAL variable. Comparing proportions between two groups → Chi-squared test. If expected cell counts <5 → use Fisher exact test instead. T-tests and ANOVA are for numeric data, not categorical.',
+formula:'Categorical outcome between groups → Chi-squared\nIf expected count <5 in any cell → Fisher exact\n\nT-test and ANOVA → numeric outcomes ONLY',
+tip:'Categorical (yes/no) data between groups → Chi-squared. Always check expected counts — if small, switch to Fisher exact.'},
+
+{id:27,topic:'Statistical Tests',type:'BOF',src:'TAS Recalls',
+q:'Power of a clinical trial is BEST defined as:',
+opts:['The probability the null hypothesis is true','The probability the treatment is effective','The probability of correctly detecting a true difference when one exists','The sample size needed','The probability of a Type I error'],
+ans:2,
+exp:'POWER = 1 − β = probability of correctly REJECTING the null hypothesis when it IS false = detecting a true difference that really exists. Power is usually set at 80% (β=0.2). Power increases with larger sample size and larger effect size.',
+formula:'Power = 1 − β\nβ = Type II error rate (usually 0.2)\nPower usually 80%\n\nPower ↑ with: larger n, larger effect size, higher α threshold',
+tip:'Power = ability to detect a true difference. Small study → low power → likely Type II error (missing a real effect).'},
+
+{id:28,topic:'Statistical Tests',type:'BOF',src:'Lissauer / ERN',
+q:'A study fails to detect a difference between treatments (p=0.35). But with only 20 patients, the study was underpowered. What type of error has occurred?',
+opts:['Type I error (false positive)','Type II error (false negative)','Confounding error','Regression to the mean','Selection bias'],
+ans:1,
+exp:'TYPE II ERROR (false negative): failing to reject H₀ when it IS false. The treatment may truly differ, but the underpowered study missed the difference. Power = 1−β. Small sample → low power → high Type II error risk.',
+formula:'Type I error (α=0.05): Reject H₀ when TRUE → false positive\nType II error (β=0.2): Fail to reject H₀ when FALSE → false negative\n\nUnderpowered study → HIGH risk of Type II error',
+tip:'TYPE I = false alarm (seeing effect that is not there)\nTYPE II = missed finding (missing effect that is real)\nSmall study → Type II.'},
+
+// ══════════════════════════════════════════════════════════
+// 6. STUDY DESIGN
+// ══════════════════════════════════════════════════════════
+{id:29,topic:'Study Design',type:'BOF',src:'TAS June 2025',
+q:'Study strength from HIGHEST to LOWEST evidence is:',
+opts:['Systematic review, RCT, cohort, case-control','Systematic review, case-control, cohort','Randomized trial, meta-analysis, case series','Meta-analysis, case series, RCT','RCT, systematic review, cohort'],
+ans:0,
+exp:'OCEBM hierarchy: Systematic review/meta-analysis of RCTs > Individual RCT > Cohort > Case-control > Case series > Case report. Direct TAS June 2025 question.',
+formula:'1. Systematic review / meta-analysis\n2. RCT\n3. Cohort study\n4. Case-control study\n5. Case series\n6. Case report\n7. Expert opinion',
+tip:'SR > RCT > Cohort > Case-control > Case series. Repeated in TAS across multiple sittings.'},
+
+{id:30,topic:'Study Design',type:'BOF',src:'Lissauer / ERN',
+q:'A researcher follows children exposed to passive smoking vs unexposed children for 5 years, comparing asthma rates. This is:',
+opts:['Case–control study','RCT','Cohort study','Cross-sectional study','Ecological study'],
+ans:2,
+exp:'COHORT study: defined groups (exposed vs unexposed) followed FORWARD in time to measure outcome. Directly gives RELATIVE RISK. A case-control starts with the outcome and looks back. An RCT randomly allocates.',
+formula:'Cohort: exposure → follow forward → outcome → RR\nCase-control: outcome → look back at exposure → OR\nRCT: randomise → intervention → outcome\nCross-sectional: snapshot at one time point',
+tip:'Cohort = forward in time. Case-control = backward in time. Cohort gives RR; case-control gives OR.'},
+
+{id:31,topic:'Study Design',type:'BOF',src:'TAS June 2025',
+q:'Retrospective study on MRSA cases over the last year to determine the CAUSE of the outcome. This is:',
+opts:['Cohort study','Cross-sectional study','Case report','Case-control study','Ecological study'],
+ans:3,
+exp:'Case-control: starts with the OUTCOME (MRSA = cases; non-MRSA = controls), then looks BACK at exposures to find the cause. Retrospective + looking for cause of known outcome = case-control. Gives OR, not RR. Direct TAS June 2025.',
+formula:'Case-control: outcome known → look BACK at exposure → ODDS RATIO\nKey words: retrospective + "cause of outcome" → case-control',
+tip:'Trigger: RETROSPECTIVE + "what caused this outcome?" = Case-control.'},
+
+{id:32,topic:'Study Design',type:'BOF',src:'TAS Feb 2025',
+q:'182 children with uncontrolled asthma randomly receive each of THREE step-up therapies in RANDOM ORDER for 16 weeks each. This is a:',
+opts:['Parallel group study','Crossover study','Cohort study','Open label study','Case-control study'],
+ans:1,
+exp:'Each child receives ALL THREE treatments in random order (their own control) → CROSSOVER study. In a parallel group study, each patient receives only ONE treatment simultaneously with others. Direct TAS Feb 2025.',
+formula:'Crossover: same patient → ALL treatments → different time periods + washout\nParallel: each patient → ONE treatment only, groups run simultaneously',
+tip:'Key: "each received all three in random order" = CROSSOVER. "Randomly assigned to ONE treatment" = parallel group RCT.'},
+
+{id:33,topic:'Study Design',type:'BOF',src:'Lissauer Ch.37',
+q:'50 children with pyloric stenosis and 50 age-matched healthy controls. Compare previous erythromycin exposure. This is:',
+opts:['Cohort study','Case-control study','Cross-sectional study','RCT','Ecological study'],
+ans:1,
+exp:'Case-control: investigators start with CASES (pyloric stenosis) and CONTROLS (healthy), then look BACK at exposure (erythromycin). This is the ONLY design that directly yields an ODDS RATIO. Cannot give relative risk directly.',
+formula:'OR = (a×d) / (b×c)\na=exposed cases, b=exposed controls\nc=unexposed cases, d=unexposed controls\n\nCase-control → OR (not RR)',
+tip:'Case-control = odds ratio. The ONLY study that cannot give RR directly (no denominator to calculate incidence).'},
+
+{id:34,topic:'Study Design',type:'BOF',src:'TAS Oct 2025 / Lissauer',
+q:'In an RCT, 20% of patients in the intervention group stop taking the drug. The PRIMARY analysis should include:',
+opts:['Only completers (per-protocol analysis)','All randomised patients in their original group — intention-to-treat','Only patients who responded','Only compliant patients plus crossovers','Those who completed minus those with side effects'],
+ans:1,
+exp:'Intention-to-treat (ITT): ALL randomised patients analysed in the group originally allocated, regardless of compliance. This preserves the benefits of randomisation and gives the most unbiased real-world estimate. Per-protocol analysis (completers only) is biased.',
+formula:'ITT = analyse as randomised (primary analysis, unbiased)\nPer-protocol = only completers (biased but sometimes reported)\n\nITT preserves randomisation → minimises bias',
+tip:'ITT is ALWAYS the primary analysis in RCTs. Appeared in multiple TAS sittings.'},
+
+{id:35,topic:'Study Design',type:'BOF',src:'ERN Ch.24 / Recalls',
+q:'A case-control study is the ONLY design that directly yields which measure?',
+opts:['Relative risk','Odds ratio','Absolute risk reduction','Number needed to treat','Hazard ratio'],
+ans:1,
+exp:'Case-control studies cannot directly calculate incidence (no full population denominator at risk), so they calculate ODDS RATIOS. When the disease is RARE, OR ≈ RR (rare disease assumption). Cohort studies and RCTs give relative risk directly.',
+formula:'Case-control → ODDS RATIO (OR) only\nCohort / RCT → RELATIVE RISK (RR)\n\nWhen disease is RARE: OR ≈ RR',
+tip:'Case-control = odds ratio. If disease is rare, OR ≈ RR. This distinction is tested every TAS sitting.'},
+
+{id:36,topic:'Study Design',type:'BOF',src:'Lissauer / Recalls',
+q:'Data on asthma prevalence in two towns A and B (Table 2.1):\nAsthma: Town A 7% (CI 5–9%), Town B 9% (CI 8.5–10%), p=NS\nBronchitis: Town A 30% (CI 26–34%), Town B 15% (CI 14–17%), p<0.01\n\nWhich statement is TRUE?',
+opts:['Asthma and bronchitis are both significantly higher in Town B','No significant difference in asthma prevalence between towns','Bronchitis prevalence in Town A is lower than Town B','Both A and B: asthma and bronchitis significantly higher in Town A','No significant difference in bronchitis between towns'],
+ans:1,
+exp:'Asthma: p=NS → no significant difference between towns (C is TRUE).\nBronchitis: p<0.01 → significantly higher in Town A (30%) vs Town B (15%). Town A bronchitis is TWICE Town B.\nOption C from the Lissauer/ERN textbook (Answer 2.2). Also TRUE: prevalence of bronchitis in Town A is twice that in Town B.',
+formula:'p=NS → no significant difference (CIs overlap)\np<0.01 → significant difference\n\nTown A bronchitis 30% vs Town B 15% = 2× → SIGNIFICANT',
+tip:'Lissauer textbook MCQ. p=NS = not significant. Always read the p-value and check CIs for each outcome separately.'},
+
+// ══════════════════════════════════════════════════════════
+// 7. BIAS
+// ══════════════════════════════════════════════════════════
+{id:37,topic:'Bias',type:'BOF',src:'TAS Oct 2025',
+q:'A study of high-flow nasal cannula oxygen defines the outcome according to what the CLINICIAN decides (no predefined criteria). This introduces:',
+opts:['Observer bias','Confounding bias','Reporting bias','Selection bias','Recall bias'],
+ans:0,
+exp:'Observer bias: the outcome assessor\'s subjective judgment influences measurement. Letting the clinician decide outcomes without blinding/predefined criteria = observer bias. Solution: pre-specified, blinded, objective outcomes. Direct TAS Oct 2025.',
+formula:null,
+tip:'Observer bias = assessor\'s knowledge or judgment influences outcomes. Prevent with: blinding + predefined outcomes.'},
+
+{id:38,topic:'Bias',type:'EMQ',src:'TAS Recalls (multi-year)',
+q:'Epilepsy study on quality of life. Match each scenario:\n\n1. Study advertised via posters on OPD clinic only\n2. Adolescent reports no difference between interventions so researcher does not publish\n3. Adolescents submitted fewer responses at time point 2 than time point 1',
+opts:['Sampling bias','Reporting bias','Attrition bias','Recall bias','Lead time bias','Spectrum bias','Observer bias'],
+ans:0,
+exp:'1 = SAMPLING BIAS: recruiting only from OPD posters → non-representative sample (excludes those who never attend clinic)\n2 = REPORTING BIAS: null results not published → skews literature toward positive findings\n3 = ATTRITION BIAS: fewer responses at follow-up → differential drop-out may bias results\n\nThis exact EMQ appeared multiple times in TAS recalls.',
+formula:null,
+tip:'Memorise all three: OPD recruitment only = Sampling. Not publishing null result = Reporting. Drop-out between time points = Attrition.'},
+
+{id:39,topic:'Bias',type:'BOF',src:'TAS Recalls',
+q:'A new cancer screening programme detects disease 2 years earlier. Five-year survival appears improved even though treatment is unchanged. This is:',
+opts:['Recall bias','Lead time bias','Spectrum bias','Length-time bias','Sampling bias'],
+ans:1,
+exp:'Lead time bias: screening detects disease earlier → apparent survival from diagnosis to death increases — but actual lifespan is unchanged. The extra "survival time" is just the lead time between earlier detection and when symptoms would have appeared anyway.',
+formula:'Apparent survival = True survival + Lead time\n(even with NO treatment benefit)',
+tip:'Lead time bias ALWAYS inflates apparent survival in screening studies. Classic exam question across all sittings.'},
+
+{id:40,topic:'Bias',type:'BOF',src:'Lissauer / ERN',
+q:'In a meta-analysis on the effect of steroids on asthma exacerbations, positive studies are more likely to be published than null results. This is:',
+opts:['Sampling bias','Recall bias','Publication bias','Attrition bias','Observer bias'],
+ans:2,
+exp:'Publication bias: studies showing significant positive results are more likely to be published than null/negative results. This skews meta-analyses and systematic reviews toward an overestimate of treatment effects. Detected visually with a FUNNEL PLOT (asymmetry suggests publication bias).',
+formula:'Funnel plot: symmetric = low publication bias\nFunnel plot: asymmetric = publication bias likely\n\nDetect using Egger test (statistical)',
+tip:'Publication bias → systematic overestimate of benefit in meta-analyses. Funnel plot detects it.'},
+
+{id:41,topic:'Bias',type:'BOF',src:'ERN Ch.24 / Lissauer',
+q:'In a case-control study, cases (children with pyloric stenosis) are more likely to remember previous erythromycin exposure than healthy controls. This is:',
+opts:['Observer bias','Selection bias','Recall bias','Publication bias','Attrition bias'],
+ans:2,
+exp:'Recall bias (retrospective bias): one group is more likely to recall events than the other. This is particularly common in case-control studies — cases are often more motivated to remember potential exposures than controls. This inflates the apparent association.',
+formula:null,
+tip:'Recall bias is the classic weakness of CASE-CONTROL studies. Cases remember exposures more than controls.'},
+
+{id:42,topic:'Bias',type:'BOF',src:'Lissauer / ERN',
+q:'A diagnostic test for CF is evaluated ONLY in children with severe disease. This is most likely to:',
+opts:['Underestimate sensitivity','Overestimate both sensitivity and specificity','Cause lead time bias','Have no effect','Underestimate specificity only'],
+ans:1,
+exp:'Spectrum bias: evaluating a test in non-representative patients (only severe cases) artificially inflates sensitivity (severe = easier to detect) and specificity (controls differ greatly from mild cases). Test performance appears better than in real clinical practice.',
+formula:null,
+tip:'Spectrum bias inflates BOTH sensitivity AND specificity. Test appears better than it really is when applied to typical patients.'},
+
+// ══════════════════════════════════════════════════════════
+// 8. SENSITIVITY, SPECIFICITY, PPV, NPV
+// ══════════════════════════════════════════════════════════
+{id:43,topic:'Sensitivity & Specificity',type:'BOF',src:'ERN Ch.24 / Lissauer',
+q:'A screening test for disease X: 10,000 tested, 100 have disease, 9,900 do not. Test identifies 99 of the 100 with disease (TP=99, FN=1). Test falsely flags 495 without disease (FP=495, TN=9405). What is the SENSITIVITY?',
+opts:['99%','95%','16%','99.99%','94%'],
+ans:0,
+exp:'Sensitivity = TP/(TP+FN) = 99/(99+1) = 99/100 = 99%\n\nSensitivity = proportion of those WITH disease who test positive. It measures how good the test is at detecting true disease. High sensitivity → few false negatives → good for ruling OUT disease (SNOUT).',
+formula:'Sensitivity = TP/(TP+FN) = a/(a+c)\n= 99/100 = 99%\n\nSNOUT: Sensitive test Negative rules OUT disease',
+tip:'Sensitivity = TP/(TP+FN). Remember SNOUT. Sensitivity and specificity do NOT change with prevalence.'},
+
+{id:44,topic:'Sensitivity & Specificity',type:'BOF',src:'ERN Ch.24 / Lissauer',
+q:'Using same data (TP=99, FP=495, FN=1, TN=9405). What is the SPECIFICITY?',
+opts:['99%','95%','16%','99.99%','83%'],
+ans:1,
+exp:'Specificity = TN/(TN+FP) = 9405/(9405+495) = 9405/9900 = 95%\n\nSpecificity = proportion of those WITHOUT disease who test negative. High specificity → few false positives → good for ruling IN disease (SPIN).',
+formula:'Specificity = TN/(TN+FP) = d/(b+d)\n= 9405/9900 = 95%\n\nSPIN: Specific test Positive rules IN disease',
+tip:'Specificity = TN/(TN+FP). Remember SPIN. Specificity does NOT change with prevalence.'},
+
+{id:45,topic:'Sensitivity & Specificity',type:'BOF',src:'ERN Ch.24 / Lissauer',
+q:'Same data (TP=99, FP=495, FN=1, TN=9405, prevalence=1%). What is the POSITIVE PREDICTIVE VALUE (PPV)?',
+opts:['99%','95%','16%','100%','51%'],
+ans:2,
+exp:'PPV = TP/(TP+FP) = 99/(99+495) = 99/594 ≈ 16.7% ≈ 16%\n\nDespite 99% sensitivity and 95% specificity, the PPV is only 16% because the disease prevalence is low (1%). Most positives are false positives in low-prevalence populations. PPV DEPENDS on prevalence.',
+formula:'PPV = TP/(TP+FP) = a/(a+b)\n= 99/594 = 16.7% ≈ 16%\n\nPPV depends on PREVALENCE:\nLow prevalence → low PPV\nHigh prevalence → high PPV',
+tip:'LOW PREVALENCE → LOW PPV. This is critical for population screening — many false positives even with excellent tests.'},
+
+{id:46,topic:'Sensitivity & Specificity',type:'BOF',src:'ERN Ch.24 / TAS Recalls',
+q:'Same test in a higher-prevalence population (5% prevalence): TP=495, FP=475, FN=5, TN=9025. What is the PPV now?',
+opts:['16%','51%','99%','95%','84%'],
+ans:1,
+exp:'PPV = TP/(TP+FP) = 495/(495+475) = 495/970 ≈ 51%\n\nAt 5% prevalence, PPV rises from 16% to 51% — with the SAME test (same sensitivity 99%, specificity 95%). This shows that PPV DEPENDS CRITICALLY on prevalence. Screening in high-prevalence populations is more efficient.',
+formula:'At 1% prevalence: PPV = 99/594 = 16%\nAt 5% prevalence: PPV = 495/970 = 51%\n\nSame test, same sensitivity, same specificity\nBut PPV is VERY DIFFERENT — because prevalence changed!',
+tip:'PPV and NPV CHANGE with prevalence. Sensitivity and specificity do NOT. This is the most tested concept in MRCPCH screening questions.'},
+
+{id:47,topic:'Sensitivity & Specificity',type:'BOF',src:'TAS Feb 2025',
+q:'Study with 1000 patients: 10 test positive; 2 of those have the disease; 990 test negative; none of those 990 have the disease. What is the NEGATIVE PREDICTIVE VALUE?',
+opts:['0.20%','20%','100%','99%','98%'],
+ans:2,
+exp:'Build the table:\nTP=2, FP=8, FN=0, TN=990\nNPV = TN/(TN+FN) = 990/(990+0) = 990/990 = 100%\n\nNone of the 990 who tested negative had the disease → NPV = 100%. Direct TAS Feb 2025.',
+formula:'NPV = TN/(TN+FN) = d/(c+d)\n= 990/990 = 100%\n\nPPV = TP/(TP+FP) = 2/10 = 20%\nSensitivity = TP/(TP+FN) = 2/2 = 100%',
+tip:'When FN=0 (no missed cases), NPV = 100% by definition. Real TAS Feb 2025 calculation question.'},
+
+{id:48,topic:'Sensitivity & Specificity',type:'EMQ',src:'TAS Recalls (multi-year)',
+q:'Using 2×2 table (A=TP, B=FP, C=FN, D=TN). Match the formula:\n1. A/(A+C)\n2. A/(A+B)\n3. D/(C+D)',
+opts:['Sensitivity, PPV, NPV','Specificity, PPV, NPV','Sensitivity, NPV, PPV','PPV, Sensitivity, Specificity','Specificity, NPV, PPV'],
+ans:0,
+exp:'A/(A+C) = TP/(TP+FN) = SENSITIVITY\nA/(A+B) = TP/(TP+FP) = PPV\nD/(C+D) = TN/(FN+TN) = NPV\n\nDirect TAS Recalls EMQ.',
+formula:'Sensitivity = A/(A+C)\nSpecificity = D/(B+D)\nPPV = A/(A+B)\nNPV = D/(C+D)\nPrevalence = (A+C)/(A+B+C+D)',
+tip:'Memorise all 4 formulas. This EMQ format has appeared multiple times in TAS.'},
+
+{id:49,topic:'Sensitivity & Specificity',type:'BOF',src:'TAS Feb 2026',
+q:'"Probability of positive result among EXPOSED to treatment ÷ probability of positive result among NOT exposed." What is this?',
+opts:['P-value','Specificity','Likelihood ratio positive','Relative risk','Odds ratio'],
+ans:3,
+exp:'This is RELATIVE RISK (RR): ratio of event probability in exposed to event probability in unexposed. LR+ = Sensitivity/(1−Specificity) — different formula. Direct TAS Feb 2026.',
+formula:'Relative Risk = P(outcome|exposed) / P(outcome|unexposed)\nLR+ = Sensitivity / (1−Specificity)\nLR− = (1−Sensitivity) / Specificity',
+tip:'TAS Feb 2026. "Exposed ÷ unexposed probability" = RELATIVE RISK.'},
+
+{id:50,topic:'Sensitivity & Specificity',type:'BOF',src:'Lissauer / ERN',
+q:'Likelihood ratios for a test: what are their main advantages over PPV and NPV?',
+opts:['They are easier to calculate','They are NOT affected by disease prevalence','They always give higher values than PPV','They require no 2×2 table','They are identical to sensitivity'],
+ans:1,
+exp:'Likelihood ratios (LR+ and LR−) are calculated from sensitivity and specificity, so they are INDEPENDENT of disease prevalence — unlike PPV and NPV which change with prevalence. LR+ = Sens/(1−Spec). LR− = (1−Sens)/Spec. LRs can be used with pre-test probability to calculate post-test probability.',
+formula:'LR+ = Sensitivity / (1−Specificity)\nLR− = (1−Sensitivity) / Specificity\n\nLR >10 or <0.1 → large change in probability\nLR 2–5 or 0.2–0.5 → moderate change',
+tip:'LRs do NOT depend on prevalence. PPV/NPV DO. Use LRs when applying a test to populations with different prevalences.'},
+
+// ══════════════════════════════════════════════════════════
+// 9. NNT, ARR, RR, OR
+// ══════════════════════════════════════════════════════════
+{id:51,topic:'NNT, ARR & Relative Risk',type:'BOF',src:'TAS June 2025',
+q:'UTI incidence: circumcised boys = 2.4/1000, uncircumcised = 7.02/1000. Formula for NNT?',
+opts:['1/(CER − EER)','CER − EER','EER/CER','(CER − EER)/CER','1/CER'],
+ans:0,
+exp:'NNT = 1/ARR = 1/(CER − EER)\nCER (uncircumcised) = 7.02/1000\nEER (circumcised) = 2.4/1000\nARR = 0.00462\nNNT = 1/0.00462 ≈ 216 boys circumcised to prevent 1 UTI.\nDirect TAS June 2025.',
+formula:'NNT = 1 / ARR\nARR = CER − EER\nCER = control event rate\nEER = experimental event rate',
+tip:'NNT = 1/ARR. Never use RRR to calculate NNT. Direct TAS June 2025.'},
+
+{id:52,topic:'NNT, ARR & Relative Risk',type:'BOF',src:'TAS Feb 2026 (croup)',
+q:'Croup study: RR = 0.14 for hospital admission with budesonide vs placebo. Which statement is MOST correct?',
+opts:['Hospital admission in budesonide group was 0.14 times that of placebo','The admission rate was 14% less than placebo','Hospital admission was 14% in the placebo group','Dexamethasone use significantly decreased','Placebo group had 86% admission rate'],
+ans:0,
+exp:'RR = 0.14 = the admission rate in budesonide is 0.14 TIMES the rate in placebo. Not the same as "14% less" (ARR). If placebo = 100 admissions, budesonide = 14 admissions. This is an 86% relative reduction, but described as 0.14 times the rate. Direct TAS Feb 2026.',
+formula:'RR = Event rate (treatment) / Event rate (control)\nRR 0.14 → treatment group admits at 14% OF the control rate\nRRR = 1 − RR = 86%',
+tip:'RR of 0.14 ≠ "14% less". It means 0.14 TIMES as likely. Know the difference between RR, RRR, and ARR.'},
+
+{id:53,topic:'NNT, ARR & Relative Risk',type:'BOF',src:'Lissauer (TOBY trial)',
+q:'TOBY trial: 33/120 cooled infants vs 48/117 controls developed cerebral palsy. What is the NNT?',
+opts:['7','14','27','50','3'],
+ans:0,
+exp:'Risk (cooled) = 33/120 = 0.275\nRisk (control) = 48/117 = 0.41\nARR = 0.41 − 0.275 = 0.135\nNNT = 1/0.135 ≈ 7\n\nFor every 7 infants cooled after HIE, 1 additional case of cerebral palsy is prevented.',
+formula:'ARR = CER − EER = 0.41 − 0.275 = 0.135\nNNT = 1/ARR = 1/0.135 ≈ 7\nRR = 0.275/0.41 = 0.67\nRRR = 1 − 0.67 = 33%',
+tip:'Classic TOBY trial NNT. NNT = 7 is excellent. Always: ARR first, then NNT = 1/ARR.'},
+
+{id:54,topic:'NNT, ARR & Relative Risk',type:'BOF',src:'Lissauer / ERN textbook',
+q:'60/1000 controls vs 40/1000 treated patients developed a complication. NNT = ?',
+opts:['10','25','50','100','20'],
+ans:2,
+exp:'CER = 60/1000 = 0.06\nEER = 40/1000 = 0.04\nARR = 0.06 − 0.04 = 0.02\nNNT = 1/0.02 = 50\n\nAlso: RRR = ARR/CER = 0.02/0.06 = 33% — sounds impressive but only 2 per 100 actually benefit.',
+formula:'ARR = 0.06 − 0.04 = 0.02\nNNT = 1/ARR = 50\nRR = 0.04/0.06 = 0.67\nRRR = 33%',
+tip:'RRR (33%) sounds more impressive than ARR (2%). Drug companies quote RRR. Always ask for ARR and NNT.'},
+
+{id:55,topic:'NNT, ARR & Relative Risk',type:'BOF',src:'ERN Ch.24',
+q:'Low birthweight children: 10.75% MORE develop hypertension vs normal birthweight (95% CI 7.25–14.25%). Which statement is TRUE?',
+opts:['The result is not statistically significant','We cannot make any conclusions from this data','We are 95% confident the true increase in hypertension in low birthweight is between 7.25% and 14.25%','The result shows low birthweight causes hypertension','The CI includes 0 so there is no difference'],
+ans:2,
+exp:'95% CI (7.25–14.25%) does NOT include 0 → statistically significant difference. We are 95% confident the true population difference is between 7.25% and 14.25%. As both limits are positive, low birthweight is associated with more hypertension. This is the ERN textbook example.',
+formula:'CI for difference: (7.25, 14.25%)\nDoes NOT include 0 → significant (p<0.05)\nBoth limits positive → consistently more hypertension\nin low birthweight group',
+tip:'CI for a difference not containing 0 = significant. Both limits same sign = consistent direction of effect.'},
+
+// ══════════════════════════════════════════════════════════
+// 10. CORRELATION & REGRESSION
+// ══════════════════════════════════════════════════════════
+{id:56,topic:'Correlation & Regression',type:'BOF',src:'ERN Ch.24',
+q:'CD4 count vs age in HIV+ children: correlation coefficient r = −0.82. What does this mean?',
+opts:['Strong positive linear correlation','Weak negative correlation','Strong negative linear association — CD4 falls as age increases','r=−0.82 means 82% of variance explained','No relationship between variables'],
+ans:2,
+exp:'r = −0.82: strong (near −1) NEGATIVE linear correlation. As age increases, CD4 count FALLS on average. r ranges from −1 (perfect negative) to +1 (perfect positive). r=0 means no LINEAR association (may still have non-linear). r² = 0.67 = 67% of variance in CD4 explained by age.',
+formula:'r = +1: perfect positive linear\nr = −1: perfect negative linear\nr = 0: no LINEAR relationship\nr² = coefficient of determination = % variance explained\n\nr=−0.82 → r²=0.67 → 67% of CD4 variance explained by age',
+tip:'r=0 does NOT mean no relationship — there may be a non-linear association. Always look at the scatterplot!'},
+
+{id:57,topic:'Correlation & Regression',type:'BOF',src:'ERN Ch.24',
+q:'Regression equation: CD4 = 4.24 − (0.64 × age). What does −0.64 represent?',
+opts:['CD4 count at age 0','For each 1-year increase in age, CD4 falls on average by 0.64','CD4 count at mean age','The correlation coefficient','The standard deviation of CD4'],
+ans:1,
+exp:'In y = a + bx: b is the regression COEFFICIENT = average change in y for each unit increase in x. Here, for every 1-year increase in age, CD4 count decreases by 0.64 on average. The intercept a=4.24 = predicted CD4 when age=0.',
+formula:'y = a + bx\na = intercept (value of y when x=0) = 4.24\nb = slope (change in y per unit x) = −0.64\n\nIn multiple regression: each b is adjusted for all other variables',
+tip:'Regression coefficient = change in outcome per unit change in predictor. Multiple regression adjusts for confounders.'},
+
+{id:58,topic:'Correlation & Regression',type:'BOF',src:'Lissauer Ch.38',
+q:'Blood pressure measured in 100 children before and after a weight-loss intervention. Which test compares the mean change?',
+opts:['Independent t-test','Paired t-test','Mann-Whitney U','Chi-squared','Fisher exact'],
+ans:1,
+exp:'Same individuals measured twice (before/after) = PAIRED data. BP is continuous and normally distributed → PAIRED t-test. Independent t-test would be wrong as both measurements come from the SAME people. From Lissauer textbook.',
+formula:'Paired t-test: same subjects × 2 time points × normal distribution\nWilcoxon signed-rank: same subjects × 2 time points × non-normal',
+tip:'Before/after on the SAME people → PAIRED test. Two different groups → INDEPENDENT test.'},
+
+// ══════════════════════════════════════════════════════════
+// 11. FOREST PLOTS & META-ANALYSIS
+// ══════════════════════════════════════════════════════════
+{id:59,topic:'Forest Plots & Meta-analysis',type:'BOF',src:'TAS Recalls (multi-year)',
+q:'Forest plot: oral ibuprofen vs IV/oral indomethacin for PDA closure. ALYA 2007 has the NARROWEST CI. Which study is most statistically significant?',
+opts:['ALYA 2007','CHOUGEAT 2003','TOPMOST 2003','SALMA 2008','YADAV 2014'],
+ans:0,
+exp:'NARROWEST CI = largest sample size = most precise estimate = most statistically significant = most weight in meta-analysis. ALYA 2007 with the narrowest CI contributes the most to the pooled result. Direct from TAS Recalls.',
+formula:'Narrow CI = large n = high precision = most weight\nCI width ∝ 1/√n\nWeight in meta-analysis ∝ 1/variance',
+tip:'NARROW CI = most precise = most significant = most weight. Appeared directly in TAS Recalls.'},
+
+{id:60,topic:'Forest Plots & Meta-analysis',type:'BOF',src:'TAS Recalls / ERN',
+q:'Meta-analysis of probiotics vs placebo for antibiotic-associated diarrhoea: most individual study CIs cross RR=1, but the pooled diamond does NOT cross RR=1. Best conclusion?',
+opts:['All individual studies show significant benefit','Probiotics should be recommended for all children','Individual studies were underpowered; pooled analysis suggests benefit but results are inconclusive individually','Publication bias has been ruled out','Meta-analysis cannot pool these studies'],
+ans:2,
+exp:'When individual studies are non-significant but the pooled estimate is significant: individual studies were underpowered (too small to detect the effect individually), but pooling increases power and reveals an overall trend. Assess heterogeneity (I²) and publication bias before drawing firm conclusions.',
+formula:'Diamond LEFT of line = beneficial\nDiamond crosses line = not significant\nDiamond does NOT cross = pooled significant effect\n\nI² >50% = substantial heterogeneity\nFunnel plot asymmetry = publication bias',
+tip:'Non-significant individual studies + significant pooled result = individual studies underpowered.'},
+
+{id:61,topic:'Forest Plots & Meta-analysis',type:'BOF',src:'Lissauer Ch.39',
+q:'I² statistic = 75%. What does this mean?',
+opts:['75% of studies showed significant results','75% of variability is due to between-study heterogeneity','The pooled result is reliable','Publication bias is 75%','75% of studies used RCT design'],
+ans:1,
+exp:'I² quantifies the % of total variance attributable to between-study heterogeneity. I²>50% = substantial heterogeneity → the studies may differ in population, intervention, or outcomes. Use random-effects model when I² is high.',
+formula:'I² <25%: low heterogeneity\nI² 25–50%: moderate\nI² >50%: substantial\nI² >75%: considerable',
+tip:'High I² = "apples and oranges" problem. Question the pooled estimate validity.'},
+
+{id:62,topic:'Incidence & Prevalence',type:'BOF',src:'Lissauer Ch.2',
+q:'Prevalence is BEST defined as:',
+opts:['Number of new cases per year','Proportion of population at risk who HAVE the condition at a given time','Lifetime risk of developing disease','Mortality rate from a disease','Incidence × duration'],
+ans:1,
+exp:'Prevalence = existing cases / population at risk at a specific time point. Incidence = NEW cases in a defined period. Prevalence ≈ Incidence × Duration.',
+formula:'Prevalence = Cases / Population at risk\nIncidence = New cases / Population at risk per time\n\nPrevalence ≈ Incidence × Duration',
+tip:'Prevalence = snapshot of ALL cases now. Incidence = NEW cases per unit time.'},
+
+{id:63,topic:'Incidence & Prevalence',type:'BOF',src:'Lissauer Ch.2',
+q:'A disease has HIGH incidence but SHORT duration (e.g. gastroenteritis). What is the effect on prevalence?',
+opts:['High prevalence','Low prevalence','Prevalence equals incidence','Prevalence is unaffected','Cannot be determined'],
+ans:1,
+exp:'Prevalence = Incidence × Duration. Short duration → LOW prevalence despite high incidence, because patients recover quickly. Contrast with diabetes: moderate incidence but HIGH prevalence because it lasts a lifetime.',
+formula:'Prevalence = Incidence × Duration\nShort duration → low prevalence\nLong duration → high prevalence',
+tip:'Duration determines prevalence. Long chronic diseases have high prevalence even with moderate incidence.'},
+
+{id:64,topic:'Run Charts & Quality Improvement',type:'BOF',src:'TAS Feb 2026',
+q:'In a quality improvement project, what methodology assesses small improvements iteratively?',
+opts:['Plan, Do, Study, Act (PDSA cycle)','Plan, Act, Study, Do','Act, Plan, Do, Study','Study, Plan, Act, Do','Do, Plan, Study, Act'],
+ans:0,
+exp:'PDSA cycle: Plan → Do → Study → Act (then repeat). Standard QI methodology for testing small changes. Direct TAS Feb 2026.',
+formula:'PDSA = Plan → Do → Study → Act\n(then cycle again)',
+tip:'TAS Feb 2026. Correct order: Plan → Do → Study → Act.'},
+
+{id:65,topic:'Run Charts & Quality Improvement',type:'BOF',src:'Lissauer Ch.40',
+q:'Run chart: 9 consecutive data points all ABOVE the median after a training intervention. What does this indicate?',
+opts:['Normal random variation','A statistically significant improvement has occurred','The median must be recalculated','Deterioration in performance','Need 5 consecutive points for significance'],
+ans:1,
+exp:'Run chart rule: 8 or MORE consecutive points on ONE SIDE of the median = special cause = statistically significant change. 9 points above after intervention = genuine improvement.',
+formula:'Run chart rules:\n• 8+ points same side of median → significant\n• 5 consecutive trending points → significant trend\n• Pattern repeating 8+ times → special cause',
+tip:'The number is 8 consecutive points on same side = significant. Not 5, not 6.'},
+
+{id:66,topic:'Run Charts & Quality Improvement',type:'BOF',src:'Lissauer Ch.40',
+q:'A run chart shows 5 consecutive data points all RISING consistently. What does this indicate?',
+opts:['Normal variation','A statistically significant TREND has occurred','This requires 8 points to be significant','Deterioration in performance','The study needs more data'],
+ans:1,
+exp:'Run chart rule: 5 CONSECUTIVE POINTS TRENDING in same direction = a TREND = special cause. This is the TREND rule, distinct from the SHIFT rule (8 consecutive on same side of median). Both indicate significant change.',
+formula:'TREND rule: 5+ consecutive points in same direction\nSHIFT rule: 8+ consecutive points same side of median\nBoth indicate special cause (significant change)',
+tip:'Trend rule (5) and shift rule (8) are two SEPARATE run chart rules. Both indicate statistical significance.'},
+
+{id:67,topic:'Statistical Concepts',type:'BOF',src:'Lissauer Ch.38',
+q:'Children with the highest BP in a survey are re-measured without intervention. Their BP is now closer to normal. This is:',
+opts:['Natural remission','Hawthorne effect','Regression to the mean','Placebo effect','Observer bias'],
+ans:2,
+exp:'Regression to the mean: extreme measurements on first testing tend to move closer to the population mean when re-measured — a statistical inevitability, not a true treatment effect. Always use a control group to separate this from real effects.',
+formula:null,
+tip:'Uncontrolled before-after studies wrongly attribute regression to the mean to treatment effects.'},
+
+{id:68,topic:'Statistical Concepts',type:'BOF',src:'TAS June 2025',
+q:'How many half-life cycles are needed to eliminate approximately 97% of a drug?',
+opts:['3','4','5','6','7'],
+ans:2,
+exp:'After 5 half-lives: (0.5)⁵ = 3.1% remains → ~97% eliminated.\nGeneral rule: 5 half-lives ≈ complete elimination. Also: 5 half-lives to reach steady state. Direct TAS June 2025.',
+formula:'After n half-lives: (0.5)ⁿ × initial dose remains\n5 t½: ~3% remains → ~97% eliminated\n\nAlso: 5 t½ to reach STEADY STATE',
+tip:'5 half-lives = ~97% eliminated. Also 5 half-lives to reach steady state.'},
+
+{id:69,topic:'Statistical Concepts',type:'BOF',src:'TAS Recalls',
+q:'The corrected QT interval (QTc) is calculated by:',
+opts:['QT / √RR','RR / √QT','QT × √RR','QT / RR','√QT / RR'],
+ans:0,
+exp:'Bazett\'s formula: QTc = QT / √RR. Normal QTc: <440ms (male), <460ms (female). Prolonged QTc → torsades de pointes risk. From TAS Recalls.',
+formula:'QTc = QT / √RR (Bazett\'s formula)\nNormal: <440ms (M), <460ms (F)\n\nRisk drugs: erythromycin, clarithromycin,\namiodarone, haloperidol, ondansetron',
+tip:'QTc = QT ÷ square root of RR interval. Appeared in TAS Recalls.'},
+
+{id:70,topic:'Statistical Concepts',type:'BOF',src:'TAS Feb 2025',
+q:'DKA: Na=154, Urea=12, Glucose=20 mmol/L. Calculate plasma osmolarity.',
+opts:['300–309 mOsm/kg','310–319 mOsm/kg','320–329 mOsm/kg','330–339 mOsm/kg','≥340 mOsm/kg'],
+ans:4,
+exp:'Plasma osmolarity = 2×Na + Glucose + Urea\n= (2×154) + 20 + 12\n= 308 + 20 + 12 = 340 mOsm/kg\n\nNormal: 275–295 mOsm/kg. Severely hyperosmolar. Direct TAS Feb 2025.',
+formula:'Plasma osmolarity = 2×Na + glucose + urea\n(all in mmol/L)\n\n= 308 + 20 + 12 = 340 mOsm/kg',
+tip:'Memorise: 2×Na + glucose + urea. All in mmol/L. Normal 275–295.'},
+
+{id:71,topic:'Statistical Concepts',type:'BOF',src:'TAS June 2025',
+q:'Which is used as a measurement TOOL in paramedic/pre-hospital research?',
+opts:['APGAR score','Height','Blood group','BMI','Core temperature'],
+ans:0,
+exp:'APGAR score is a validated composite score used as an outcome variable in neonatal and paramedic research. It quantifies neonatal condition at birth (Appearance, Pulse, Grimace, Activity, Respiration). Direct TAS June 2025.',
+formula:null,
+tip:'APGAR = validated composite score = outcome variable in paramedic/neonatal research. Direct TAS June 2025.'},
+
+{id:72,topic:'Evidence-Based Medicine',type:'BOF',src:'TAS Recalls',
+q:'In paediatric drug studies, why is knowing the maximum ADULT dose LEAST helpful?',
+opts:['Adults and children have identical pharmacokinetics','Children have different metabolism — immature hepatic/renal function varies by age','mg/kg dose is always the same','All paediatric trials are required by law','Paediatric dosing is always lower'],
+ans:1,
+exp:'Children have significantly different pharmacokinetics: immature hepatic enzymes, different renal clearance by age, altered volume of distribution, different protein binding. Adult maximum dose does NOT translate directly. Children are not small adults.',
+formula:null,
+tip:'Science of Practice TAS domain. Children ≠ small adults. Pharmacokinetics differ fundamentally by age.'},
+
+{id:73,topic:'Evidence-Based Medicine',type:'BOF',src:'Lissauer Ch.39',
+q:'"Taking the drug doubles your chances of success." Control rate = 10%, treatment rate = 20%. Which statement also describes the same data?',
+opts:['NNT = 10','ARR = 20%','NNT = 100','RRR = 10%','ARR = 5%'],
+ans:0,
+exp:'ARR = 20−10 = 10%. NNT = 1/0.10 = 10. RR = 20/10 = 2.0 ("doubles chances"). All describe the same data in different ways. From Lissauer EBM chapter.',
+formula:'CER=10%, EER=20%\nARR = 10%\nNNT = 1/0.10 = 10\nRR = 2.0 ("doubles chances")\nRRR = 100% relative increase',
+tip:'Same data presented 3 ways: NNT=10, ARR=10%, RR=2.0. All are correct representations of the same result.'},
+
+{id:74,topic:'Evidence-Based Medicine',type:'BOF',src:'TAS Recalls / Lissauer',
+q:'In an RCT, all randomised patients are analysed in their ORIGINAL allocation regardless of compliance. This principle is:',
+opts:['Per-protocol analysis','Intention-to-treat analysis','Stratified analysis','Subgroup analysis','Post-hoc analysis'],
+ans:1,
+exp:'Intention-to-treat (ITT) analysis: ALL randomised patients analysed in the group originally allocated, regardless of compliance or drop-out. Preserves randomisation, minimises bias, and gives the most realistic real-world estimate.',
+formula:'ITT = analyse as randomised (primary, unbiased)\nPer-protocol = only completers (biased)\n\nITT is the PRIMARY analysis in any RCT',
+tip:'ITT is always the primary RCT analysis.'},
+
+{id:75,topic:'Evidence-Based Medicine',type:'BOF',src:'TAS June 2025 / Recalls',
+q:'A 15-year-old with ALL refuses chemotherapy. Her competence is assessed and accepted. Parents want treatment. What is the appropriate action?',
+opts:['Proceed with parents\' wishes','Accept the patient\'s wishes — a competent minor can refuse treatment','Go to court immediately for a ruling','Treat in best interest','Wait until she is 18'],
+ans:1,
+exp:'In the UK, a competent young person has the right to consent to and refuse treatment. When competence is ACCEPTED, the patient\'s autonomous decision should be respected. In life-threatening refusals, legal advice may also be needed. For MRCPCH: accepted competence → accept patient\'s wishes. Direct TAS June 2025.',
+formula:null,
+tip:'Competent young person + accepted competence → accept patient\'s wishes. TAS June 2025.'},
+];
+
+const TOPICS=[
+  {id:'all',name:'All Questions',icon:'📊'},
+  {id:'Data Types & Display',name:'Data Types & Display',icon:'📊'},
+  {id:'Describing Data',name:'Describing Data',icon:'📏'},
+  {id:'Confidence Intervals',name:'Confidence Intervals',icon:'📐'},
+  {id:'P-values & Significance',name:'P-values',icon:'🎲'},
+  {id:'Statistical Tests',name:'Statistical Tests',icon:'🧮'},
+  {id:'Study Design',name:'Study Design',icon:'🔬'},
+  {id:'Bias',name:'Types of Bias',icon:'⚖️'},
+  {id:'Sensitivity & Specificity',name:'Sens/Spec/PPV/NPV',icon:'🎯'},
+  {id:'NNT, ARR & Relative Risk',name:'NNT, ARR & RR',icon:'💊'},
+  {id:'Correlation & Regression',name:'Correlation',icon:'📈'},
+  {id:'Forest Plots & Meta-analysis',name:'Forest Plots',icon:'🌳'},
+  {id:'Incidence & Prevalence',name:'Incidence & Prevalence',icon:'🦠'},
+  {id:'Run Charts & Quality Improvement',name:'Run Charts / QI',icon:'📉'},
+  {id:'Statistical Concepts',name:'Other Concepts',icon:'🔢'},
+  {id:'Evidence-Based Medicine',name:'EBM',icon:'🏆'},
+];
+
+function qc(id){return id==='all'?Q.length:Q.filter(q=>q.topic===id).length}
+function shuf(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b}
+
+// ── GEMINI API ────────────────────────────────────────────
+const GEMINI_BASE='https://generativelanguage.googleapis.com/v1beta/models';
+
+async function detectModel(key){
+  try{
+    const stored=localStorage.getItem('mrcpch_gemini_model');
+    if(stored)return stored;
+    const r=await fetch(`${GEMINI_BASE}?key=${key}`);
+    if(!r.ok)throw new Error();
+    const d=await r.json();
+    const models=d.models||[];
+    const prefer=['gemini-2.5-flash','gemini-1.5-flash','gemini-1.0-pro','gemini-pro'];
+    for(const p of prefer){
+      if(models.some(m=>m.name&&m.name.includes(p))){
+        localStorage.setItem('mrcpch_gemini_model',p);
+        return p;
+      }
+    }
+    return 'gemini-1.5-flash';
+  }catch{return 'gemini-1.5-flash';}
+}
+
+async function askGemini(key,prompt){
+  const model=await detectModel(key);
+  const r=await fetch(`${GEMINI_BASE}/${model}:generateContent?key=${key}`,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      contents:[{parts:[{text:prompt}]}],
+      generationConfig:{maxOutputTokens:8192}
+    })
+  });
+  if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'API error');}
+  const d=await r.json();
+  return d.candidates?.[0]?.content?.parts?.[0]?.text||'No response';
+}
+
+// ── SETUP MODAL ───────────────────────────────────────────
+function SetupModal({onClose}){
+  const [key,setKey]=useState(localStorage.getItem('mrcpch_apikey')||'');
+  const [model,setModel]=useState(localStorage.getItem('mrcpch_gemini_model')||'');
+  const [testing,setTesting]=useState(false);
+  const [msg,setMsg]=useState('');
+
+  const save=async()=>{
+    if(!key.trim()){setMsg('Please enter an API key');return;}
+    localStorage.setItem('mrcpch_apikey',key.trim());
+    localStorage.removeItem('mrcpch_gemini_model');
+    setTesting(true);setMsg('');
+    try{
+      const m=await detectModel(key.trim());
+      setModel(m);
+      setMsg('✅ Connected! Model: '+m);
+    }catch(e){setMsg('❌ Error: '+e.message);}
+    setTesting(false);
+  };
+
+  const clear=()=>{
+    localStorage.removeItem('mrcpch_apikey');
+    localStorage.removeItem('mrcpch_gemini_model');
+    setKey('');setModel('');setMsg('Cleared.');
+  };
+
+  return h('div',{className:'ovl',onClick:e=>{if(e.target.className==='ovl')onClose();}},
+    h('div',{className:'mdl'},
+      h('div',{className:'mdl-t'},'⚙️ AI Tutor Setup'),
+      h('div',{className:'mdl-s'},'Free Gemini API key from aistudio.google.com — no payment needed'),
+      model&&h('div',{className:'model-info'},'Active model: '+model),
+      h('input',{className:'inp',type:'password',placeholder:'Paste your Gemini API key here...',value:key,onChange:e=>setKey(e.target.value)}),
+      msg&&h('div',{style:{fontSize:'12px',color:msg.startsWith('✅')?'var(--ok)':'var(--ng)',marginBottom:'10px',fontFamily:"'JetBrains Mono',monospace"}},msg),
+      h('div',{className:'mdl-row'},
+        h('button',{className:'btn bg',onClick:onClose},'Close'),
+        h('button',{className:'btn bg',style:{color:'var(--ng)'},onClick:clear},'Clear'),
+        h('button',{className:'btn bp',style:{gridColumn:'1/-1'},onClick:save,disabled:testing},testing?'Testing...':'Save & Test')
+      )
+    )
+  );
+}
+
+// ── AI TUTOR COMPONENT ────────────────────────────────────
+function AiTutor({question,userAnswer,isCorrect}){
+  const [resp,setResp]=useState('');
+  const [loading,setLoading]=useState(false);
+  const [err,setErr]=useState('');
+  const key=localStorage.getItem('mrcpch_apikey');
+
+  if(!key) return h('div',{className:'no-key'},'💡 Add a Gemini API key (⚙️ top right) for AI explanations');
+
+  const ask=async()=>{
+    setLoading(true);setResp('');setErr('');
+    const L=['A','B','C','D','E','F','G'];
+    const prompt=`MRCPCH Statistics tutor. Be VERY BRIEF.
+
+Q: ${question.q}
+Answer: ${L[question.ans]}. ${question.opts[question.ans]}
+Student: ${L[userAnswer]}. ${question.opts[userAnswer]} (${isCorrect?'CORRECT':'WRONG'})
+
+Reply in EXACTLY this format — no extra text:
+✅ WHY CORRECT: [1 sentence max]
+❌ WHY WRONG: [only if student was wrong — 1 sentence on their specific choice, skip if correct]
+⚡ EXAM RULE: [the single key rule or mnemonic]
+📐 FORMULA: [only if a formula applies — omit otherwise]
+
+Max 4 lines. No intro. No summary. No paragraphs.`;
+    try{
+      const r=await askGemini(key,prompt);
+      setResp(r);
+    }catch(e){setErr('Error: '+e.message);}
+    setLoading(false);
+  };
+
+  return h('div',null,
+    !resp&&!loading&&h('button',{className:'ai-btn',onClick:ask},'🤖 Ask AI Tutor to explain this question'),
+    loading&&h('div',{className:'ai-box'},h('div',{className:'ai-hd'},'🤖 AI Tutor'),h('div',{className:'ai-loading'},h('div',{className:'ai-dot'}),h('div',{className:'ai-dot'}),h('div',{className:'ai-dot'}),h('span',{style:{fontSize:'12px',color:'var(--mu)',marginLeft:'4px'}},'Thinking...'))),
+    err&&h('div',{style:{fontSize:'12px',color:'var(--ng)',marginTop:'8px'}},err),
+    resp&&h('div',{className:'ai-box'},
+      h('div',{className:'ai-hd'},'🤖 ','AI Tutor — Gemini'),
+      h('div',{className:'ai-tx',dangerouslySetInnerHTML:{__html:resp.replace(/\n/g,'<br/>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\*(.*?)\*/g,'<em>$1</em>')}})
+    )
+  );
+}
+
+// ── APP ───────────────────────────────────────────────────
+function App(){
+  const[sc,setSc]=useState('home');
+  const[st,setSt]=useState('all');
+  const[sf,setSf]=useState(false);
+  const[qs,setQs]=useState([]);
+  const[cur,setCur]=useState(0);
+  const[ans,setAns]=useState({});
+  const[se,setSe]=useState(false);
+  const[score,setScore]=useState({c:0,t:0});
+  const[rf,setRf]=useState('all');
+  const[modal,setModal]=useState(false);
+
+  const start=()=>{let q=st==='all'?Q:Q.filter(x=>x.topic===st);if(sf)q=shuf(q);setQs(q);setAns({});setCur(0);setSe(false);setSc('quiz');};
+  const pick=(i)=>{if(ans[cur]!==undefined)return;setAns(p=>({...p,[cur]:i}));setSe(true);};
+  const next=()=>{if(cur<qs.length-1){setCur(c=>c+1);setSe(false);}else{const c=qs.filter((q,i)=>ans[i]===q.ans).length;setScore({c,t:qs.length});setSc('results');}};
+  const prev=()=>{if(cur>0){setCur(c=>c-1);setSe(ans[cur-1]!==undefined);}};
+  const home=()=>setSc('home');
+  const review=()=>{setRf('all');setSc('review');};
+
+  return h('div',null,
+    modal&&h(SetupModal,{onClose:()=>setModal(false)}),
+    sc==='home'?h(Home,{st,setSt,sf,setSf,start,onGear:()=>setModal(true)}):
+    sc==='quiz'?h(Quiz,{qs,cur,ans,se,pick,next,prev,home,onGear:()=>setModal(true)}):
+    sc==='results'?h(Results,{score,home,review,onGear:()=>setModal(true)}):
+    h(Review,{qs,ans,rf,setRf,home,onGear:()=>setModal(true)})
+  );
+}
+
+// ── SCREENS ───────────────────────────────────────────────
+function Home({st,setSt,sf,setSf,start,onGear}){
+  const cnt=qc(st);
+  return h('div',null,
+    h('div',{className:'hdr'},
+      h('div',{className:'hico'},'📊'),
+      h('div',{className:'htx'},h('div',{className:'ht'},'MRCPCH Statistics Quiz'),h('div',{className:'hs'},'75 questions · AI Tutor included')),
+      h('button',{className:'gbtn',onClick:onGear,title:'AI Tutor Setup'},'⚙️'),
+      h('div',{className:'hbg'},Q.length+' Qs')
+    ),
+    h('div',{className:'main'},
+      h('div',{className:'hero'},
+        h('div',{className:'hem'},'📐'),
+        h('div',{className:'htt'},'Statistics & EBM — Complete'),
+        h('div',{className:'hsu'},'All statistics from TAS exam papers + Lissauer + ERN textbooks. Tap ⚙️ to add a free Gemini API key for AI explanations.'),
+        h('div',{className:'srow'},
+          h('div',{className:'scd'},h('div',{className:'sn'},Q.length),h('div',{className:'sl'},'Questions')),
+          h('div',{className:'scd'},h('div',{className:'sn'},'16'),h('div',{className:'sl'},'Topics')),
+          h('div',{className:'scd'},h('div',{className:'sn'},'🤖'),h('div',{className:'sl'},'AI Tutor'))
+        )
+      ),
+      h('div',{className:'slbl'},'Select Topic'),
+      h('div',{className:'tgrid'},
+        TOPICS.filter(t=>qc(t.id)>0).map(t=>
+          h('div',{key:t.id,className:'tc'+(st===t.id?' sel':''),onClick:()=>setSt(t.id)},
+            h('div',{className:'ti'},t.icon),
+            h('div',{className:'tn'},t.name),
+            h('div',{className:'tct'},qc(t.id)+' questions')
+          )
+        )
+      ),
+      h('div',{className:'tr',onClick:()=>setSf(s=>!s)},
+        h('div',{style:{fontSize:'18px'}},'🔀'),
+        h('div',{className:'tl'},h('div',null,'Shuffle Questions'),h('div',{className:'tls'},sf?'Random order':'Original order')),
+        h('div',{className:'ts'+(sf?' on':'')},h('div',{className:'tk'}))
+      ),
+      h('button',{className:'btn bp',onClick:start},'▶ Start — ',cnt,' Questions')
+    )
+  );
+}
+
+function Quiz({qs,cur,ans,se,pick,next,prev,home,onGear}){
+  const q=qs[cur];if(!q)return null;
+  const ad=ans[cur]!==undefined,ua=ans[cur],ok=ad&&ua===q.ans;
+  const L=['A','B','C','D','E','F','G'],pct=((cur+1)/qs.length*100).toFixed(0);
+  return h('div',null,
+    h('div',{className:'hdr'},
+      h('button',{className:'btn bg',style:{padding:'6px 12px',fontSize:'12px'},onClick:home},'← Home'),
+      h('div',{className:'htx',style:{textAlign:'center'}},h('div',{className:'hs'},q.topic)),
+      h('button',{className:'gbtn',onClick:onGear,title:'AI Tutor Setup'},'⚙️'),
+      h('div',{className:'hbg'},(cur+1)+'/'+qs.length)
+    ),
+    h('div',{className:'main'},
+      h('div',{className:'prw'},h('div',{className:'pro'},h('div',{className:'pri',style:{width:pct+'%'}})),h('span',{className:'pt'},pct+'%')),
+      h('div',{className:'qc'},
+        h('div',{className:'qm'},
+          h('span',{className:'qt'},q.topic),h('span',{className:'qtt'},q.type),h('span',{className:'sbg'},q.src),h('span',{className:'qn'},'Q'+(cur+1))
+        ),
+        h('div',{className:'qtx',dangerouslySetInnerHTML:{__html:q.q.replace(/\n/g,'<br/>')}})
+      ),
+      h('div',{className:'ol'},
+        q.opts.map((opt,i)=>{
+          let c='ob';
+          if(ad){if(i===q.ans)c+=' rc';if(i===ua&&ua!==q.ans)c+=' sw';if(i===ua&&ua===q.ans)c+=' sc';}
+          return h('button',{key:i,className:c,disabled:ad,onClick:()=>pick(i)},h('span',{className:'ol2'},L[i]),h('span',null,opt));
+        })
+      ),
+      se&&h('div',{className:'exp'+(ok?'':' wr')},
+        h('div',{className:'eh'+(ok?' co':' wr')},ok?'✅ Correct!':'❌ Incorrect',h('span',{style:{fontSize:'12px',fontWeight:'400',color:'var(--mu)',marginLeft:'6px'}},ok?'Well done!':'Correct: '+L[q.ans]+'. '+q.opts[q.ans])),
+        h('div',{className:'etx',dangerouslySetInnerHTML:{__html:q.exp.replace(/\n/g,'<br/>')}}),
+        q.formula&&h('div',{className:'ef',dangerouslySetInnerHTML:{__html:q.formula.replace(/\n/g,'<br/>')}}),
+        q.tip&&h('div',{className:'etp'},h('span',{style:{color:'var(--wn)',fontSize:'14px',flexShrink:0}},'💡'),h('span',null,q.tip)),
+        h('div',{className:'esr'},'📄 Source: ',h('span',null,q.src)),
+        ad&&h(AiTutor,{question:q,userAnswer:ua,isCorrect:ok})
+      ),
+      h('div',{className:'nr'},
+        h('button',{className:'btn bg',onClick:prev,disabled:cur===0},'← Back'),
+        h('button',{className:'btn bp',onClick:next,disabled:!ad},cur===qs.length-1?'🏁 Finish':'Next →')
+      )
+    )
+  );
+}
+
+function Results({score,home,review,onGear}){
+  const pct=Math.round(score.c/score.t*100),wrong=score.t-score.c;
+  const emoji=pct>=80?'🎉':pct>=60?'💪':'📚',msg=pct>=80?'Excellent!':pct>=60?'Good Effort!':'Keep Practising!';
+  const cls=pct>=80?'ex':pct>=60?'gd':'nw',col=pct>=80?'var(--ok)':pct>=60?'var(--wn)':'var(--ng)';
+  const deg=Math.round(pct*3.6);
+  return h('div',null,
+    h('div',{className:'hdr'},h('div',{className:'hico'},'🏆'),h('div',{className:'htx'},h('div',{className:'ht'},'Results'),h('div',{className:'hs'},score.t+' questions')),h('button',{className:'gbtn',onClick:onGear},'⚙️')),
+    h('div',{className:'main'},
+      h('div',{className:'rsc'},
+        h('div',{className:'rem'},emoji),h('div',{className:'sm '+cls},msg),h('div',{className:'rsb'},'Here\'s how you did:'),
+        h('div',{className:'srng',style:{background:`conic-gradient(${col} ${deg}deg,rgba(255,255,255,.05) ${deg}deg)`}},
+          h('div',{className:'sri'},h('div',{className:'sp'},pct+'%'),h('div',{className:'sf'},score.c+'/'+score.t))
+        ),
+        h('div',{className:'rg'},
+          h('div',{className:'rst'},h('div',{className:'rsn',style:{color:'var(--ok)'}},score.c),h('div',{className:'rsl'},'Correct')),
+          h('div',{className:'rst'},h('div',{className:'rsn',style:{color:'var(--ng)'}},wrong),h('div',{className:'rsl'},'Wrong')),
+          h('div',{className:'rst'},h('div',{className:'rsn',style:{color:'var(--a)'}},pct+'%'),h('div',{className:'rsl'},'Score'))
+        )
+      ),
+      h('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'10px',marginBottom:'16px'}},
+        h('button',{className:'btn bg',onClick:home},'🏠 Home'),
+        h('button',{className:'btn bp',onClick:review},'📋 Review All')
+      )
+    )
+  );
+}
+
+function Review({qs,ans,rf,setRf,home,onGear}){
+  const filtered=qs.filter((q,i)=>{if(rf==='correct')return ans[i]===q.ans;if(rf==='wrong')return ans[i]!==undefined&&ans[i]!==q.ans;return true;});
+  const L=['A','B','C','D','E','F','G'];
+  return h('div',null,
+    h('div',{className:'hdr'},h('button',{className:'btn bg',style:{padding:'6px 12px',fontSize:'12px'},onClick:home},'← Home'),h('div',{className:'htx'},h('div',{className:'ht'},'Review'),h('div',{className:'hs'},filtered.length+' questions')),h('button',{className:'gbtn',onClick:onGear},'⚙️')),
+    h('div',{className:'main'},
+      h('div',{className:'fr'},
+        h('div',{className:'ft'+(rf==='all'?' ac':''),onClick:()=>setRf('all')},'All'),
+        h('div',{className:'ft'+(rf==='wrong'?' ac':''),onClick:()=>setRf('wrong')},'❌ Wrong'),
+        h('div',{className:'ft'+(rf==='correct'?' ac':''),onClick:()=>setRf('correct')},'✅ Correct')
+      ),
+      filtered.map(q=>{
+        const qi=qs.indexOf(q),ua=ans[qi],ok=ua===q.ans;
+        return h('div',{key:q.id,className:'ri '+(ok?'rc2':'rw')},
+          h('div',{style:{marginBottom:'6px'}},h('span',{className:'qt'},q.topic),h('span',{className:'sbg'},q.src)),
+          h('div',{className:'rq'},q.q.split('\n')[0]),
+          h('div',{className:'ra'},h('span',{style:{color:ok?'var(--ok)':'var(--ng)'}},ok?'✅':'❌'),h('span',{style:{color:'var(--mu)'}},'Your: '),h('span',{style:{color:ok?'var(--ok)':'var(--ng)'}},ua!==undefined?L[ua]+'. '+q.opts[ua]:'—')),
+          !ok&&h('div',{className:'ra',style:{marginTop:'4px'}},h('span',{style:{color:'var(--ok)'}},'✓ '+L[q.ans]+'. '+q.opts[q.ans]))
+        );
+      })
+    )
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+if('serviceWorker' in navigator){const sw=`const C='stats-v5';self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(['.']))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`;navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'})));}
+</script>
+</body>
+</html>
